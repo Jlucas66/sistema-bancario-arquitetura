@@ -13,6 +13,7 @@
 .include "transacoes.asm"
 .include "salvar_dados.asm"
 .include "arquivo.asm"
+.include "data_hora.asm"
 
 .data
     # ==================== VARIÁVEIS GLOBAIS ====================

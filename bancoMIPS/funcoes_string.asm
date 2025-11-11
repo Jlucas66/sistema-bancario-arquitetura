@@ -139,6 +139,29 @@ compr_loop:
 compr_fim:
     jr $ra
 
+
+# Função strcpy
+# A0 = endereço de destino
+# A1 = endereço da string fonte
+# copia a string de A1 para A0
+# retorna A0 em V0 (opcional)
+strcpy:
+    addi $t0, $a0, 0        # ponteiro destino
+    addi $t1, $a1, 0        # ponteiro fonte
+
+copy_loop:
+    lb $t2, 0($t1)          # lê byte da fonte
+    sb $t2, 0($t0)          # escreve byte no destino
+    beqz $t2, end_strcpy    # se byte == 0 (fim da string) termina
+    addi $t0, $t0, 1
+    addi $t1, $t1, 1
+    j copy_loop
+
+end_strcpy:
+    move $v0, $a0           # retorna ponteiro destino (opcional)
+    jr $ra
+
+
 # =============================================
 # Fim do arquivo funcoes_string.asm
 # =============================================
